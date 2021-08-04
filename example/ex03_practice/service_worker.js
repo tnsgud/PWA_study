@@ -3,13 +3,13 @@ const sCacheName = 'hello-pwa';
 const aFilesToCache = [
     './',
     './index.html',
-    'manifest.js',
+    './manifest.json',
     './images/hello-pwa.png',
 ];
 
 // 서비스 워커 설치하고 캐시 파일 저장
 self.addEventListener('install', (pEvent) => {
-    console.log('서비스 워커 설치함');
+    console.log('서비스 워커 설치함!');
     pEvent.waitUntil(
         caches.open(sCacheName).then((pCache) => {
             console.log('파일을 캐시에 저장함!');
