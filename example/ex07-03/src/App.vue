@@ -10,9 +10,9 @@
         </v-app-bar>
 
         <v-content>
-            <v-slide-x-trasition mode="out-in">
+            <v-slide-x-transition mode="out-in">
                 <router-view></router-view>
-            </v-slide-x-trasition>
+            </v-slide-x-transition>
         </v-content>
 
         <v-footer color="secondary" fixed dark>
