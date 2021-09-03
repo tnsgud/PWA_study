@@ -2,65 +2,62 @@
     <v-app>
         <v-navigation-drawer clipped v-model="drawer" app>
             <v-list>
-                <v-list-item
-                    value="true"
-                    v-for="(item, i) in fnGetMenuItems"
-                    :to="item.to"
-                    :key="i"
-                >
+                <v-list-item value="true" v-for="(item, i) in fnGetMenuItems" :to="item.to" :key="i">
                     <v-list-item-action>
                         <v-icon v-html="item.icon"></v-icon>
                     </v-list-item-action>
                     <v-list-item-title v-text="item.title"></v-list-item-title>
                 </v-list-item>
-                <v-list-item @click="fnDoLogout" v-if="fnGetAuthStatus">
+
+                <v-list-item @click="fnDoLogout" v-if="fnGetAythStatus">
                     <v-list-item-action>
-                        <v-icon>mdi-arrow-right-bold-box-outline</v-icon>
+                        <v-icon>
+                            mdi-arrow-right-bold-box-outline
+                        </v-icon>
                     </v-list-item-action>
-                    <v-list-item-title>
-                        로그아웃
-                    </v-list-item-title>
+                    <v-list-item-title>로그아웃</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-app-bar clipped-left app color="primary" dark>
-            <v-app-bar-nav-icon @click.t.stop="drawer =! drawer" class="hidden-sm-and-up"></v-app-bar-nav-icon>
+
+        <v-app-bar app clipped-left color="primary" dark>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up"></v-app-bar-nav-icon>
             <router-link to="/" style="cursor: pointer">
-                <v-icon>mdi-home</v-icon>
+                <v-icon class="hidden-xs-only" large color="teal
+					lighten-4">mdi-home</v-icon>
             </router-link>
-            <v-toolbar-title class="headline">이메일-구글 인증 로그인</v-toolbar-title>
+            <v-toolbar-title class="headline">
+                이메일-구글 인증 로그인
+            </v-toolbar-title>
             <v-spacer></v-spacer>
+
             <v-toolbar-items class="hidden-xs-only">
                 <v-btn text v-for="item in fnGetMenuItems" :key="item.title" :to="item.to">
-                    <v-icon left> {{ item.icon }}</v-icon>
+                    <v-icon left>{{ item.icon }}</v-icon>
                     {{ item.title }}
                 </v-btn>
 
                 <v-btn text @click="fnDoLogout" v-if="fnGetAuthStatus">
-                    <v-icon left>mdi-arrow-right-bold-box-outline</v-icon>
-                    로그아웃
+                    <v-icon left>mdi-arrow-right-bold-box-outline</v-icon>로그아웃
                 </v-btn>
             </v-toolbar-items>
         </v-app-bar>
-
-        <v-main>
-            <router-view/>
-        </v-main>
-
+        <v-content>
+            <router-view />
+        </v-content>
         <v-footer app>
-            <div class="mx-auto">&copy; CODE-DESIGN.web.app.net</div>
+            <div class="mx-auto">&copy; CODE-DESIGN.web.app</div>
         </v-footer>
     </v-app>
 </template>
 
 <script>
 export default {
-    name: 'App',
-
-    data: () => ({
-        drawer: false
-    }),
-
+    data() {
+        return {
+            drawer: false
+        }
+    },
     computed: {
         fnGetAuthStatus() {
             return this.$store.getters.fnGetAuthStatus
@@ -85,6 +82,7 @@ export default {
         fnDoLogout() {
             this.$store.dispatch('fnDoLogout')
         }
-    }
-};
+    },
+    name: 'App'
+}
 </script>
